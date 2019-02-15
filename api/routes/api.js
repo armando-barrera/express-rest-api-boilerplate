@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/apiController");
+const controller = require("../controllers/bookController");
 
 router
   .route("/books")
   //   .all()
-  .post(controller.createController)
-  .get(controller.readAllController);
+  .post(controller.bookCreate)
+  .get(controller.allBookDetails);
 router
   .route("/books/:id")
   //   .all()
-  .get(controller.readController)
-  .patch(controller.updateController)
-  .delete(controller.deleteController);
+  .get(controller.bookDetails)
+  .patch(controller.bookUpdate)
+  .delete(controller.bookDelete);
 
 module.exports = router;
