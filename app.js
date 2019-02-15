@@ -32,14 +32,4 @@ app.use((error, req, res, next) => {
   res.json({ error: error.message });
 });
 
-app.listen(PORT, () => {
-  // if (
-  //   ENV !== "production" &&
-  //   ENV !== "development" &&
-  //   ENV !== "testing"
-  // ) {
-  //   console.log("NODE_ENV must be production or development");
-  //   process.exit(1);
-  // }
-  console.log(`${APP_NAME} running on port ${PORT}`);
-});
+module.exports = app;
