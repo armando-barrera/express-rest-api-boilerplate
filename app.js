@@ -1,8 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const helmet = require("helmet");
+const cors = require("cors");
 const api = require("./api/routes/api");
-const { APP_NAME, ENV, PORT } = require("./config/config");
 
 const app = express();
 
@@ -10,10 +10,9 @@ app.use(helmet());
 // Check if the server is running on production or on local environment to send express header
 const dev = app.get("env") !== "production";
 if (!dev) {
-  app.disable("x-powered-by");
-  app.use(logger("common"));
+  app.disable("x-powered-by").use(logger("common"));
 } else {
-  app.use(logger("dev"));
+  app.use(logger("dev")).use(cors());
 }
 
 app.use("/api/v1", api);
