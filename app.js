@@ -6,6 +6,7 @@ const { port } = require("./config");
 const app = express();
 const environment = process.env.NODE_ENV;
 
+app.use(helmet());
 // Check if the server is running on production or on local environment to send express header
 const dev = app.get("env") !== "production";
 if (!dev) {
