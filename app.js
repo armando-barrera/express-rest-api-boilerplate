@@ -1,10 +1,9 @@
 const express = require("express");
 const logger = require("morgan");
 const api = require("./api/routes/api");
-const { port } = require("./config");
+const { APP_NAME, ENV, PORT } = require("./config/config");
 
 const app = express();
-const environment = process.env.NODE_ENV;
 
 app.use(helmet());
 // Check if the server is running on production or on local environment to send express header
@@ -32,14 +31,14 @@ app.use((error, req, res, next) => {
   res.json({ error: error.message });
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   // if (
-  //   environment !== "production" &&
-  //   environment !== "development" &&
-  //   environment !== "testing"
+  //   ENV !== "production" &&
+  //   ENV !== "development" &&
+  //   ENV !== "testing"
   // ) {
   //   console.log("NODE_ENV must be production or development");
   //   process.exit(1);
   // }
-  console.log(`REST API running on port ${port}`);
+  console.log(`${APP_NAME} running on port ${PORT}`);
 });
